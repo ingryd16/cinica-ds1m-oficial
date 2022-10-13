@@ -8,7 +8,7 @@ public class ClinicaApp {
 
         HomeFrame tela = new HomeFrame();
         tela.setVisible(true);
-        
+
     }
 
 }
