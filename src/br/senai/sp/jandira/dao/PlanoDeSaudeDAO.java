@@ -3,7 +3,6 @@ package br.senai.sp.jandira.dao;
 import java.util.ArrayList;
 
 import br.senai.sp.jandira.model.PlanoDeSaude;
-import java.util.Objects;
 import javax.swing.table.DefaultTableModel;
 
 public class PlanoDeSaudeDAO { // Simular nosso banco de dados
@@ -31,6 +30,26 @@ public class PlanoDeSaudeDAO { // Simular nosso banco de dados
             }
         }
         return false;
+    }
+    
+    public static PlanoDeSaude getPlanoDeSaude(Integer codigo) {
+      
+        for(PlanoDeSaude p : planos) {
+            if(p.getCodigo().equals(codigo)){
+                return p;
+            }
+        }
+        
+        return null;  
+    }
+    
+    public static void atualizar(PlanoDeSaude planoDeSaude) {
+        for(PlanoDeSaude p : planos) {
+            if(p.getCodigo().equals(planoDeSaude.getCodigo())){
+                planos.set(planos.indexOf(p), planoDeSaude);
+                break;
+            }
+        }
     }
 
     public static ArrayList<PlanoDeSaude> listarTodos() {
