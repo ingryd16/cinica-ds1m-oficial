@@ -1,7 +1,6 @@
 package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
-import javax.swing.JTable;
 
 public class HomeFrame extends javax.swing.JFrame {
 
