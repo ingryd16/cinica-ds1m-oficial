@@ -1,7 +1,5 @@
 package br.senai.sp.jandira.testes;
 
-import java.awt.Color;
-
 import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
 
 public class TesteDaoXpto {
