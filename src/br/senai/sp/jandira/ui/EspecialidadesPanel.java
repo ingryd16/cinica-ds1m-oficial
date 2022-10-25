@@ -1,7 +1,8 @@
 package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.EspecialidadesDAO;
-import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
+import br.senai.sp.jandira.model.Especialidade;
+import br.senai.sp.jandira.model.TipoOperacao;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
@@ -51,7 +52,7 @@ public class EspecialidadesPanel extends javax.swing.JPanel {
         scrollTableEspecialidades.setBounds(20, 40, 905, 240);
 
         buttonExcluirEspecialidades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/delete32-2.png"))); // NOI18N
-        buttonExcluirEspecialidades.setToolTipText("Excluir plano de saúde selecionado");
+        buttonExcluirEspecialidades.setToolTipText("Excluir especialidade selecionada");
         buttonExcluirEspecialidades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonExcluirEspecialidadesActionPerformed(evt);
@@ -61,7 +62,7 @@ public class EspecialidadesPanel extends javax.swing.JPanel {
         buttonExcluirEspecialidades.setBounds(700, 294, 70, 60);
 
         buttonAlterarEspecialidades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/edit32.png"))); // NOI18N
-        buttonAlterarEspecialidades.setToolTipText("Editar plano de saúde selecionado");
+        buttonAlterarEspecialidades.setToolTipText("Editar especialidade selecionada");
         buttonAlterarEspecialidades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAlterarEspecialidadesActionPerformed(evt);
@@ -71,7 +72,7 @@ public class EspecialidadesPanel extends javax.swing.JPanel {
         buttonAlterarEspecialidades.setBounds(780, 294, 70, 60);
 
         buttonAdicionarEspecialidades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/add32.png"))); // NOI18N
-        buttonAdicionarEspecialidades.setToolTipText("Adicionar plano de saúde");
+        buttonAdicionarEspecialidades.setToolTipText("Adicionar especialidade");
         buttonAdicionarEspecialidades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAdicionarEspecialidadesActionPerformed(evt);
@@ -93,51 +94,53 @@ public class EspecialidadesPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(
                     this,
                     "Por favor, selecione a especialidade que você deseja excluir!",
-                    "Especialide",
+                    "Especialidade",
                     JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_buttonExcluirEspecialidadesActionPerformed
 
     private void buttonAlterarEspecialidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAlterarEspecialidadesActionPerformed
 
-        //linha = tableEspecialidades.getSelectedRow();
-        //if (linha != -1) {
-            //editar();
-        //} else {
-            //JOptionPane.showMessageDialog(
-                    //this,
-                    //"Por favor, selecione uma especialidade para alterar.",
-                    //"Especialidade",
-                    //JOptionPane.WARNING_MESSAGE);
-        //}
+        linha = tableEspecialidades.getSelectedRow();
+        if (linha != -1) {
+            editar();
+        } else {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Por favor, selecione uma especialidade para alterar.",
+                    "Especialidade",
+                    JOptionPane.WARNING_MESSAGE);
+        }
 
     }//GEN-LAST:event_buttonAlterarEspecialidadesActionPerformed
 
     private void buttonAdicionarEspecialidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarEspecialidadesActionPerformed
 
-        //EspecialidadesDialog EspecialidadesDialog
-        //= new EspecialidadesDialog(
-        //  null,
-        // true,
-        //  TipoOperacao.ADICIONAR,
-        // null);
-//
-        //EspecialidadesDialog.setVisible(true);
-//
-        // criarTabelaEspecialidades();
+        EspecialidadeDialog especialidadeDialog
+                = new EspecialidadeDialog(
+                        null,
+                        true,
+                        TipoOperacao.ADICIONAR,
+                        null);
+
+        especialidadeDialog.setVisible(true);
+
+        criarTabelaEspecialidades();
     }//GEN-LAST:event_buttonAdicionarEspecialidadesActionPerformed
 
-    //private void editar() {
-        //Especialidade especialidade = EspecialidadesPanel.getEspecialidade(getCodigo());
-        //PlanosDeSaudeDialog planosDeSaudeDialog
-                //= new PlanosDeSaudeDialog(
-                        //null,
-                        //true,
-                        //TipoOperacao.ALTERAR,
-                        //planoDeSaude);
-        //planosDeSaudeDialog.setVisible(true);
-        //criarTabelaPlanosDeSaude();
-    //}
+    private void editar() {
+        Especialidade especialidades = EspecialidadesDAO.getEspecialidade(getCodigo());
+
+        EspecialidadeDialog especialidadeDialog
+                = new EspecialidadeDialog(
+                        null,
+                        true,
+                        TipoOperacao.ALTERAR,
+                        especialidades);
+
+        especialidadeDialog.setVisible(true);
+        criarTabelaEspecialidades();
+    }
 
     private void excluir() {
 
