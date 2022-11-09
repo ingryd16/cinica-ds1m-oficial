@@ -4,7 +4,7 @@ public class Especialidade {
 
     private String nome;
     private String descricao;
-    private static int quantidade = 100;
+    private static int contador = 100;
     private Integer codigo;
 
     // Construtores da classe
@@ -22,10 +22,17 @@ public class Especialidade {
     public Especialidade() {
         atualizarCodigo();
     }
+    
+    public Especialidade(Integer codigo, String nome, String descricao) {
+		this.codigo = codigo;
+                this.nome = nome;
+		this.descricao = descricao;
+                this.contador = this.codigo++;
+	}
 
     private void atualizarCodigo() {
-        this.codigo = quantidade;
-        quantidade++;
+        contador++;
+        this.codigo = contador;
     }
 
     // Métodos de acesso getters and setters
@@ -50,7 +57,11 @@ public class Especialidade {
     }
 
     public int getQuantidade() {
-        return quantidade;
+        return contador;
     }
-
+    
+    public String getEspecialidadeSeparadoPorPontoEVirgula() {
+        String EspecialidadeStr = this.codigo + ";" + this.nome + ";" + this.descricao;
+        return EspecialidadeStr;
+    }
 }
