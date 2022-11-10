@@ -10,6 +10,10 @@ public class Pessoa {
     private String telefone;
     private LocalDate dataDeNascimento;
 
+    //Metodos de acesso
+    
+    
+    // Construtores da classe
     public String getNome() {
         return nome;
     }
