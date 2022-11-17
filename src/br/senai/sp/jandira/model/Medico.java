@@ -39,12 +39,7 @@ import java.util.ArrayList;
         this.codigo = contador;
     }   
     
-    
-    //Métodos de acesso
-    
-//    public String getNome(){
-//        return nome;
-//    }
+
     
     public Integer getCodigo() {
         return codigo;

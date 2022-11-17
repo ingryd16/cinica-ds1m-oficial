@@ -24,7 +24,6 @@ public class PlanoDeSaudeDAO { // Simular nosso banco de dados
     private static final String ARQUIVO_TEMP = "C:\\Users\\22282092\\clinica-pastas\\java-planoDeSaude\\plano-de-saude-temp.txt";
     private static final Path PATH_TEMP = Paths.get(ARQUIVO_TEMP);
 
-
     public PlanoDeSaudeDAO(PlanoDeSaude planoDeSaude) {
         this.planos.add(planoDeSaude);
     }

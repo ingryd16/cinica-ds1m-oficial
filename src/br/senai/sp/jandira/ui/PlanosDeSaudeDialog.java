@@ -53,7 +53,6 @@ public class PlanosDeSaudeDialog extends javax.swing.JDialog {
         buttonSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setLocationByPlatform(true);
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -77,6 +76,11 @@ public class PlanosDeSaudeDialog extends javax.swing.JDialog {
         jLabel2.setBounds(30, 50, 110, 16);
 
         textCodigo.setEditable(false);
+        textCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textCodigoActionPerformed(evt);
+            }
+        });
         jPanel2.add(textCodigo);
         textCodigo.setBounds(30, 70, 71, 30);
 
@@ -150,6 +154,10 @@ public class PlanosDeSaudeDialog extends javax.swing.JDialog {
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
 ////        // TODO add your handling code here:
     }//GEN-LAST:event_buttonCancelarActionPerformed
+
+    private void textCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textCodigoActionPerformed
 
     private void atualizar() {
         planoDeSaude.setOperadora(textNomeDaOperadora.getText());
