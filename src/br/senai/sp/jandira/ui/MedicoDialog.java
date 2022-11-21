@@ -4,12 +4,22 @@ package br.senai.sp.jandira.ui;
 import br.senai.sp.jandira.dao.MedicoDAO;
 import br.senai.sp.jandira.model.Medico;
 import br.senai.sp.jandira.model.TipoOperacao;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 public class MedicoDialog extends javax.swing.JDialog {
     
     private TipoOperacao tipoOperacao;
     private Medico medico;
+    
+    
+    private DefaultListModel<String> listaTodosModel = new DefaultListModel<>();
+    private ArrayList<String> especialidadesArray = new ArrayList<>();
+    
+    private DefaultListModel<String> selecionadosModel = new DefaultListModel<>();
+    private ArrayList<String> especialidadesSelecionadasArray = new ArrayList<>();
 
     public MedicoDialog(
             java.awt.Frame parent, 
@@ -19,6 +29,7 @@ public class MedicoDialog extends javax.swing.JDialog {
         
         super(parent, modal);
         initComponents();
+        carregarEspecialidades();
         this.tipoOperacao = tipoOperacao;
         this.medico = medico;
         
@@ -26,6 +37,19 @@ public class MedicoDialog extends javax.swing.JDialog {
         if(tipoOperacao == TipoOperacao.ALTERAR) {
             preencherFormulario();
         } 
+    }
+    
+        private void carregarEspecialidades() {
+        especialidadesArray.add("100 - Cotia");
+        especialidadesArray.add("200 - Itapevi");
+        especialidadesArray.add("300 - São Roque");
+        especialidadesArray.add("400 - Osasco");
+        especialidadesArray.add("500 - Barueri");
+        especialidadesArray.add("600 - Carapicuíba");
+        especialidadesArray.add("700 - Santana de Parnaíba");
+        
+        listaTodosModel.addAll(especialidadesArray);
+        ListListaDeEspecialidades.setModel(listaTodosModel);
     }
     
         private void preencherFormulario() {
@@ -64,6 +88,7 @@ public class MedicoDialog extends javax.swing.JDialog {
         ListListaDeEspecialidades = new javax.swing.JList<>();
         ScrollListaDeEspecialidadesMedico = new javax.swing.JScrollPane();
         ListListaDeEspecialidadesMedico = new javax.swing.JList<>();
+        botaoPass = new javax.swing.JButton();
         buttonCancelar = new javax.swing.JButton();
         buttonSalvar = new javax.swing.JButton();
 
@@ -161,6 +186,15 @@ public class MedicoDialog extends javax.swing.JDialog {
         jPanel2.add(ScrollListaDeEspecialidadesMedico);
         ScrollListaDeEspecialidadesMedico.setBounds(220, 200, 140, 130);
 
+        botaoPass.setText(">");
+        botaoPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoPassActionPerformed(evt);
+            }
+        });
+        jPanel2.add(botaoPass);
+        botaoPass.setBounds(160, 240, 50, 23);
+
         getContentPane().add(jPanel2);
         jPanel2.setBounds(10, 70, 630, 350);
 
@@ -187,7 +221,6 @@ public class MedicoDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
-        ////        // TODO add your handling code here:
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
     private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
@@ -206,6 +239,20 @@ public class MedicoDialog extends javax.swing.JDialog {
     private void textTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textTelefoneActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textTelefoneActionPerformed
+
+    private void botaoPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPassActionPerformed
+        //String cidade = ListListaDeEspecialidades.getSelectedValue(); Pega somente um, o primeiro
+        //Object[] cidades = ListListaDeEspecialidades.getSelectedValues(); Depreciado
+        List<String> especialidadesArray = ListListaDeEspecialidades.getSelectedValuesList(); // Usar esse aqui
+        
+        for (String especialidade : especialidadesArray){
+            especialidadesSelecionadasArray.add(especialidade);
+        }
+        
+        selecionadosModel.clear();
+        selecionadosModel.addAll(especialidadesSelecionadasArray);
+        ListListaDeEspecialidadesMedico.setModel(selecionadosModel);
+    }//GEN-LAST:event_botaoPassActionPerformed
 
 private void atualizar() {
         medico.setCrm(textCrm.getText());
@@ -279,6 +326,7 @@ private void atualizar() {
     private javax.swing.JList<String> ListListaDeEspecialidadesMedico;
     private javax.swing.JScrollPane ScrollListaDeEspecialidades;
     private javax.swing.JScrollPane ScrollListaDeEspecialidadesMedico;
+    private javax.swing.JButton botaoPass;
     private javax.swing.JButton buttonCancelar;
     private javax.swing.JButton buttonSalvar;
     private javax.swing.JLabel codigoLabel;
@@ -299,4 +347,6 @@ private void atualizar() {
     private javax.swing.JTextField textNome;
     private javax.swing.JTextField textTelefone;
     // End of variables declaration//GEN-END:variables
+
+    
 }

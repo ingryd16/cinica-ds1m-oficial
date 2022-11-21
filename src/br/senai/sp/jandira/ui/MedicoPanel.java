@@ -97,16 +97,18 @@ public class MedicoPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_buttonExcluirMedicoActionPerformed
 
     private void buttonAlterarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAlterarMedicoActionPerformed
-        MedicoDialog medicoDialog = 
-                new MedicoDialog(
-                        null, 
-                        true,
-                        TipoOperacao.ADICIONAR,
-                        null);
         
-        medicoDialog.setVisible(true);
-
-        criarTabelaMedico();
+        linha = tableMedico.getSelectedRow();
+        
+        if (linha != -1) {
+            editar();
+        } else {
+            JOptionPane.showMessageDialog(
+                    this, 
+                    "Por favor, selecione um médico para alterar.",
+                    "Planos de Saúde",
+                    JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_buttonAlterarMedicoActionPerformed
 
     private void buttonAdicionarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarMedicoActionPerformed
