@@ -1,19 +1,21 @@
 package br.senai.sp.jandira.model;
 
-import java.time.LocalDate;
+import br.senai.sp.jandira.dao.EspecialidadesDAO;
 import java.util.ArrayList;
 
     public class Medico extends Pessoa {
 
-    private String nome;
-    private String email;
-    private String telefone;
-    private LocalDate dataDeNascimento;
+//    private String nome;
+//    private String email;
+//    private String telefone;
+//    private LocalDate dataDeNascimento;
     private Integer codigo;
     private static int contador = 100;
     private String crm;
+    
+    private Especialidade especialidade;
     private ArrayList<Especialidade> especialidades;
-    private ArrayList<Medico> medicos;
+//    private ArrayList<Medico> medicos;
   
     
     // Construtores da classe
@@ -21,15 +23,15 @@ import java.util.ArrayList;
         atualizarCodigo();
     }
     
-    public Medico (String nome) {
-        this.nome = nome;
-        atualizarCodigo();
-    }
+//    public Medico (String nome) {
+//        this.nome = nome;
+//        atualizarCodigo();
+//    }
 
     public Medico (Integer codigo, String crm, String nome) {
         this.codigo = codigo;
-        this.nome = nome;
         this.crm = crm;
+        setNome(nome);
         this.contador = this.codigo++;
 
     }
@@ -39,13 +41,11 @@ import java.util.ArrayList;
         this.codigo = contador;
     }   
     
-
-    
     public Integer getCodigo() {
         return codigo;
     }
 
-    public int getContador() {
+    public static int getContador() {
         return contador;
     }
 
@@ -61,12 +61,22 @@ import java.util.ArrayList;
         return especialidades;
     }
 
-    public void setEspecialidades(ArrayList<Especialidade> especialidades) {
-        this.especialidades = especialidades;
+    public Especialidade getEspecialidade() {
+        return especialidade;
+    }
+    
+//    public void setEspecialidades(ArrayList<Especialidade> especialidades) {
+//        this.especialidades = especialidades;
+//    }
+    
+    public Integer getCodigoEspecialidadeMedico(Integer codigo) {
+        return EspecialidadesDAO.listarTodos().get(codigo).getCodigo();
     }
 
     public String getMedicoSeparadoPorPontoEVirgula() {
-        String MedicoStr = this.codigo + ";" + this.crm + ";" + this.nome + ";" + this.telefone + ";" + this.email + ";" + this.dataDeNascimento + ";" + this.especialidades;
-        return MedicoStr;
+//        String MedicoStr = this.codigo + ";" + this.crm + ";" + this.nome + ";" + this.telefone + ";" + this.email + ";" + this.dataDeNascimento + ";" + this.especialidades;
+//        return MedicoStr;
+//    }
+        return this.codigo + ";" + this.crm + ";" + this.getNome() + ";" + this.getTelefone() + ";" + this.getEmail() + ";" + this.getDataDeNascimento();
     }
 }

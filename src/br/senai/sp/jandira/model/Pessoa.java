@@ -11,8 +11,6 @@ public class Pessoa {
     private LocalDate dataDeNascimento;
 
     //Metodos de acesso
-    
-    
     // Construtores da classe
     public String getNome() {
         return nome;

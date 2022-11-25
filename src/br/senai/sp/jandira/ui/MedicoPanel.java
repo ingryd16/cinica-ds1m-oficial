@@ -1,4 +1,3 @@
-
 package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.MedicoDAO;
@@ -112,8 +111,7 @@ public class MedicoPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_buttonAlterarMedicoActionPerformed
 
     private void buttonAdicionarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarMedicoActionPerformed
-        MedicoDialog medicoDialog = 
-            new MedicoDialog(
+        MedicoDialog medicoDialog = new MedicoDialog(
                 null, 
                 true,
                 TipoOperacao.ADICIONAR,
@@ -128,8 +126,7 @@ public class MedicoPanel extends javax.swing.JPanel {
         
         Medico medico = MedicoDAO.getMedico(getCodigo());
         
-        MedicoDialog medicoDialog = 
-                new MedicoDialog(
+        MedicoDialog medicoDialog = new MedicoDialog(
                         null, 
                         true, 
                         TipoOperacao.ALTERAR, 
@@ -141,7 +138,6 @@ public class MedicoPanel extends javax.swing.JPanel {
     }
     
     private void excluir() {
-        
         int resposta = JOptionPane.showConfirmDialog(
                 this,
                 "Você confirma a exclusão do medico selecionado?",

@@ -1,4 +1,3 @@
-
 package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.MedicoDAO;
@@ -13,7 +12,6 @@ public class MedicoDialog extends javax.swing.JDialog {
     
     private TipoOperacao tipoOperacao;
     private Medico medico;
-    
     
     private DefaultListModel<String> listaTodosModel = new DefaultListModel<>();
     private ArrayList<String> especialidadesArray = new ArrayList<>();
@@ -60,7 +58,7 @@ public class MedicoDialog extends javax.swing.JDialog {
         textNome.setText(medico.getNome());
         textTelefone.setText(medico.getTelefone());
         textEmail.setText(medico.getEmail());
-        textData.setText(medico.getDataDeNascimento().toString());
+//        textData.setText(medico.getDataDeNascimento().toString());
     }
     
     @SuppressWarnings("unchecked")
@@ -142,6 +140,7 @@ public class MedicoDialog extends javax.swing.JDialog {
         jPanel2.add(listaMedicoLabel);
         listaMedicoLabel.setBounds(220, 180, 150, 16);
 
+        textCodigo.setEditable(false);
         textCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textCodigoActionPerformed(evt);
@@ -257,6 +256,8 @@ public class MedicoDialog extends javax.swing.JDialog {
 private void atualizar() {
         medico.setCrm(textCrm.getText());
         medico.setNome(textNome.getText());
+        medico.setEmail(textEmail.getText());
+        medico.setTelefone(textTelefone.getText());
         
         if (validarCadastro()){
         MedicoDAO.atualizar(medico);
@@ -269,10 +270,13 @@ private void atualizar() {
         }
     }
     
-    private void gravar() {
+private void gravar() {
         Medico medico = new Medico();
         medico.setCrm(textCrm.getText());
         medico.setNome(textNome.getText());
+//        medico.setDataDeNascimento(textData.getText());
+        medico.setEmail(textEmail.getText());
+        medico.setTelefone(textTelefone.getText());
     
         if (validarCadastro()){
             MedicoDAO.gravar(medico);
@@ -287,7 +291,7 @@ private void atualizar() {
         }
     }
     
-    private boolean validarCadastro() {
+private boolean validarCadastro() {
         
         if (textNome.getText().isEmpty()){
             
@@ -298,9 +302,7 @@ private void atualizar() {
                     JOptionPane.ERROR_MESSAGE);
             
             textNome.requestFocus();
-            
             return false;
-            
         }
         
         if (textCrm.getText().isEmpty()) {
@@ -312,15 +314,43 @@ private void atualizar() {
                     JOptionPane.ERROR_MESSAGE);
             
             textCrm.requestFocus();
-            
-            return false;
-            
+            return false;  
         }
         
-        return true;
-        
-    }
+        if (textTelefone.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Por favor, preencha o número de telefone!!",
+                    "Médico",
+                    JOptionPane.ERROR_MESSAGE);
 
+            textTelefone.requestFocus();
+            return false;
+        }
+        if (textEmail.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Por favor, preencha o email!!",
+                    "Médico",
+                    JOptionPane.ERROR_MESSAGE);
+
+            textEmail.requestFocus();
+            return false;
+        }
+        if (textData.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Por favor, preencha a data de nascimento!!",
+                    "Médico",
+                    JOptionPane.ERROR_MESSAGE);
+
+            textData.requestFocus();
+            return false;
+        }
+        return true;
+    }
+        
+     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> ListListaDeEspecialidades;
     private javax.swing.JList<String> ListListaDeEspecialidadesMedico;

@@ -38,8 +38,10 @@ public class MedicoDAO {
                 PATH,
                 StandardOpenOption.APPEND,
                 StandardOpenOption.WRITE);  
-        String novoMedico = medico.getMedicoSeparadoPorPontoEVirgula();
-                bw.write(novoMedico);
+        
+//        String novoMedico = medico.getMedicoSeparadoPorPontoEVirgula();
+                
+                bw.write(medico.getCodigo()+ ";" + medico.getNome() + ";" + medico.getCrm() + ";" + medico.getTelefone() + ";" + medico.getEmail() + ";" + medico.getDataDeNascimento());
                 bw.newLine();
                 bw.close();
                 

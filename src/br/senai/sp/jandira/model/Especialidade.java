@@ -27,7 +27,9 @@ public class Especialidade {
 		this.codigo = codigo;
                 this.nome = nome;
 		this.descricao = descricao;
-                this.contador = this.codigo++;
+                this.contador = this.codigo;
+                
+                atualizarCodigo();
 	}
 
     private void atualizarCodigo() {
@@ -61,7 +63,8 @@ public class Especialidade {
     }
     
     public String getEspecialidadeSeparadoPorPontoEVirgula() {
-        String EspecialidadeStr = this.codigo + ";" + this.nome + ";" + this.descricao;
-        return EspecialidadeStr;
+//        String EspecialidadeStr = this.codigo + ";" + this.nome + ";" + this.descricao;
+//        return EspecialidadeStr;
+        return this.codigo + ";" + this.nome + ";" + this.descricao;
     }
 }
