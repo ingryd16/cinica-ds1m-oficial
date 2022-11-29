@@ -192,7 +192,7 @@ public class MedicoDialog extends javax.swing.JDialog {
             }
         });
         jPanel2.add(botaoPass);
-        botaoPass.setBounds(160, 240, 50, 23);
+        botaoPass.setBounds(160, 250, 50, 23);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(10, 70, 630, 350);

@@ -19,7 +19,7 @@ public class EspecialidadesDAO {
     private static ArrayList<Especialidade> especialidadeArray = new ArrayList<>();
     private final static String ARQUIVO = "C:\\Users\\22282092\\clinica-pastas\\java-especialidade\\especialidades.txt";
     private static final Path PATH = Paths.get(ARQUIVO);
-    private static final String ARQUIVO_TEMP = "C:\\Users\\22282092\\clinica-pastas\\java-planoDeSaude\\especialidades-temp.txt";
+    private static final String ARQUIVO_TEMP = "C:\\Users\\22282092\\clinica-pastas\\java-especialidade\\especialidades-temp.txt";
     private static final Path PATH_TEMP = Paths.get(ARQUIVO_TEMP);
     
     public EspecialidadesDAO(Especialidade especialidade) {
