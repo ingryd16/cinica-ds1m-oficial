@@ -31,8 +31,12 @@ public class MedicoDAO {
 
     }
     
+    public static ArrayList<Medico> listarTodos() {
+        return medicoArray;
+    }
+    
     public static void gravar(Medico medico) {
-        medicoArray.add(medico);
+//        medicoArray.add(medico);
         try {
         BufferedWriter bw = Files.newBufferedWriter(
                 PATH,
@@ -119,9 +123,7 @@ public class MedicoDAO {
         }
     }
     
-    public static ArrayList<Medico> listarTodos() {
-        return medicoArray;
-    }
+   
     
     public static void getListaMedico() {
         try {
@@ -154,8 +156,8 @@ public class MedicoDAO {
         int i = 0;
         for (Medico m : medicoArray) {
             dados[i][0] = m.getCodigo();
-            dados[i][1] = m.getCrm();
-            dados[i][2] = m.getNome();
+            dados[i][1] = m.getNome();
+            dados[i][2] = m.getCrm();
             
             i++;
         }

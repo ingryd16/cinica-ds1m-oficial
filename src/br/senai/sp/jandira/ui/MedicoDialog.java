@@ -3,6 +3,8 @@ package br.senai.sp.jandira.ui;
 import br.senai.sp.jandira.dao.MedicoDAO;
 import br.senai.sp.jandira.model.Medico;
 import br.senai.sp.jandira.model.TipoOperacao;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -38,13 +40,13 @@ public class MedicoDialog extends javax.swing.JDialog {
     }
     
         private void carregarEspecialidades() {
-        especialidadesArray.add("100 - Cotia");
-        especialidadesArray.add("200 - Itapevi");
-        especialidadesArray.add("300 - São Roque");
-        especialidadesArray.add("400 - Osasco");
-        especialidadesArray.add("500 - Barueri");
-        especialidadesArray.add("600 - Carapicuíba");
-        especialidadesArray.add("700 - Santana de Parnaíba");
+        especialidadesArray.add("100 - Odontologia ");
+        especialidadesArray.add("200 - Ortopedia");
+        especialidadesArray.add("300 - Dermatologia");
+        especialidadesArray.add("400 - Pediatria");
+        especialidadesArray.add("500 - Psicologia");
+        especialidadesArray.add("600 - Fisioterapia");
+        especialidadesArray.add("700 - Oncologista");
         
         listaTodosModel.addAll(especialidadesArray);
         ListListaDeEspecialidades.setModel(listaTodosModel);
@@ -118,11 +120,11 @@ public class MedicoDialog extends javax.swing.JDialog {
 
         crmLabel.setText("CRM");
         jPanel2.add(crmLabel);
-        crmLabel.setBounds(130, 40, 26, 16);
+        crmLabel.setBounds(420, 40, 26, 16);
 
         nomeLabel.setText("Nome");
         jPanel2.add(nomeLabel);
-        nomeLabel.setBounds(250, 40, 33, 16);
+        nomeLabel.setBounds(130, 40, 33, 16);
 
         listaLabel.setText("Lista de especialidades");
         jPanel2.add(listaLabel);
@@ -148,10 +150,16 @@ public class MedicoDialog extends javax.swing.JDialog {
         });
         jPanel2.add(textCodigo);
         textCodigo.setBounds(20, 60, 80, 22);
+
+        textCrm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textCrmActionPerformed(evt);
+            }
+        });
         jPanel2.add(textCrm);
-        textCrm.setBounds(130, 60, 90, 22);
+        textCrm.setBounds(130, 60, 250, 22);
         jPanel2.add(textNome);
-        textNome.setBounds(250, 60, 350, 22);
+        textNome.setBounds(420, 60, 130, 22);
 
         textTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,7 +228,7 @@ public class MedicoDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
-    }//GEN-LAST:event_buttonCancelarActionPerformed
+dispose();    }//GEN-LAST:event_buttonCancelarActionPerformed
 
     private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
 
@@ -253,11 +261,16 @@ public class MedicoDialog extends javax.swing.JDialog {
         ListListaDeEspecialidadesMedico.setModel(selecionadosModel);
     }//GEN-LAST:event_botaoPassActionPerformed
 
+    private void textCrmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCrmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textCrmActionPerformed
+
 private void atualizar() {
         medico.setCrm(textCrm.getText());
         medico.setNome(textNome.getText());
         medico.setEmail(textEmail.getText());
         medico.setTelefone(textTelefone.getText());
+//        medico.setDataDeNascimento(LocalDate.parse(textData.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         
         if (validarCadastro()){
         MedicoDAO.atualizar(medico);
@@ -274,7 +287,7 @@ private void gravar() {
         Medico medico = new Medico();
         medico.setCrm(textCrm.getText());
         medico.setNome(textNome.getText());
-//        medico.setDataDeNascimento(textData.getText());
+//        medico.setDataDeNascimento(LocalDate.parse(textData.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         medico.setEmail(textEmail.getText());
         medico.setTelefone(textTelefone.getText());
     
