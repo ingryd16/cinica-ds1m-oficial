@@ -33,7 +33,7 @@ import java.util.ArrayList;
         this.codigo = codigo;
         this.crm = crm;
         super.setNome(nome);
-        this.contador = this.codigo++;
+        this.contador = this.codigo;
 
     }
     

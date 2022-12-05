@@ -36,36 +36,35 @@ public class MedicoDAO {
     }
     
     public static void gravar(Medico medico) {
-//        medicoArray.add(medico);
+        medicoArray.add(medico);
         try {
-        BufferedWriter bw = Files.newBufferedWriter(
-                PATH,
-                StandardOpenOption.APPEND,
-                StandardOpenOption.WRITE);  
-        
-//        String novoMedico = medico.getMedicoSeparadoPorPontoEVirgula();
-                
-                bw.write(medico.getCodigo()+ ";" + medico.getNome() + ";" + medico.getCrm() + ";" + medico.getTelefone() + ";" + medico.getEmail() + ";" + medico.getDataDeNascimento());
-                bw.newLine();
-                bw.close();
-                
-    } catch (IOException erro) {
-            JOptionPane.showMessageDialog(null, 
-                    "Houve um problema ao tentar abrir o arquivo.",
+            BufferedWriter bw = Files.newBufferedWriter(
+                    PATH,
+                    StandardOpenOption.APPEND,
+                    StandardOpenOption.WRITE);
+            bw.write(medico.getMedicoSeparadoPorPontoEVirgula());
+            bw.newLine();
+            bw.close();
+
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Ocorreu um erro ao gravar",
                     "Erro ao gravar",
                     JOptionPane.ERROR_MESSAGE);
-     
-        }    
+        }
     }
     
     public static boolean excluir(Integer codigo) {
-        for(Medico m : medicoArray) {
-            if(m.getCodigo().equals(codigo)){
+        for (Medico m : medicoArray) {
+            if (m.getCodigo().equals(codigo)) {
                 medicoArray.remove(m);
                 break;
             }
         }
+
         atualizarArquivo();
+
         return false;
     }
     
@@ -83,48 +82,42 @@ public class MedicoDAO {
     public static void atualizarArquivo (){
         File arquivoAtual = new File(ARQUIVO);
         File arquivoTemp = new File(ARQUIVO_TEMP);
-        
+
         try {
             arquivoTemp.createNewFile();
-            
+
             BufferedWriter bwTemp = Files.newBufferedWriter(
-                    PATH_TEMP, 
+                    PATH_TEMP,
                     StandardOpenOption.APPEND,
                     StandardOpenOption.WRITE);
-            
+
             for (Medico m : medicoArray) {
                 bwTemp.write(m.getMedicoSeparadoPorPontoEVirgula());
-                bwTemp.newLine();    
+                bwTemp.newLine();
+
             }
-            //fechr o arquivo temporario
             bwTemp.close();
-            
-            //excluir o arquivo atual - plano-de-saude.txt
+
             arquivoAtual.delete();
-            
-            //renomear o arquivo temp
+
             arquivoTemp.renameTo(arquivoAtual);
-            
-            } catch (IOException ex) {
-            JOptionPane.showMessageDialog(
-                    null, 
-                    "OCORREU UM ERRO AO CRIAR O ARQUIVO", 
-                    "ERRO", 
-                    JOptionPane.ERROR_MESSAGE);
+
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao criar o arquivo!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
     
     public static void atualizar(Medico medico) {
-        for(Medico m : medicoArray) {
-            if(m.getCodigo().equals(medico.getCodigo())){
+        for (Medico m : medicoArray) {
+            if (m.getCodigo().equals(medico.getCodigo())) {
                 medicoArray.set(medicoArray.indexOf(m), medico);
                 break;
             }
         }
-    }
-    
-   
-    
+        atualizarArquivo();
+
+    }  
+  
     public static void getListaMedico() {
         try {
             //abrir o arquivo para leitura - leitor

@@ -270,7 +270,6 @@ private void atualizar() {
         medico.setNome(textNome.getText());
         medico.setEmail(textEmail.getText());
         medico.setTelefone(textTelefone.getText());
-//        medico.setDataDeNascimento(LocalDate.parse(textData.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         
         if (validarCadastro()){
         MedicoDAO.atualizar(medico);
@@ -287,9 +286,10 @@ private void gravar() {
         Medico medico = new Medico();
         medico.setCrm(textCrm.getText());
         medico.setNome(textNome.getText());
-//        medico.setDataDeNascimento(LocalDate.parse(textData.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         medico.setEmail(textEmail.getText());
         medico.setTelefone(textTelefone.getText());
+        //medico.setDataDeNascimento(LocalDate.parse(textData.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+
     
         if (validarCadastro()){
             MedicoDAO.gravar(medico);
